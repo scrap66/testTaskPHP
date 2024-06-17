@@ -2,6 +2,8 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$db2 = require __DIR__ . '/db2.php';
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -41,13 +43,7 @@ $config = [
             ],
         ],
         'db' => $db,
-        'db2' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'pgsql:host=localhost;port=5432;dbname=UserDB',
-            'username' => 'postgres',
-            'password' => 'SA',
-            'charset' => 'utf8',
-        ],
+        'db2' => $db2,
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
