@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Books;
 use app\models\Client;
 use app\models\ClientSearch;
 use Yii;
@@ -141,13 +142,14 @@ class ClientController extends Controller
         $result = [];
 
         foreach ($clients as $client){
-            $available_clients = $client->getBooks();
+            $available_clients = $client->getBooks() ;
             $isAvailable = !empty($available_clients);
+            if (!$isAvailable) $available_clients = "Not found";
             if (($availability == '1' &&  $isAvailable) || ($availability == '0' &&  !$isAvailable)){
                 $result[] = [
                     'id' => $client->id_client,
                     'full_name' => $client->full_name,
-                    'available' => $available_clients
+                    'available' => $available_clients,
                 ];
             }
         }

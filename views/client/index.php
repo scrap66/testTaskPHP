@@ -79,9 +79,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     success: function(data) {
                         $('#client-container').empty();
                         // Обработка возвращенных данных
-                        data.forEach(function (client) {
-                            $('#client-container').append('<div>' + client.full_name + '</div>');
+                        let list = '<ol class="list-group list-group-numbered">';
+                        data.forEach(function(client) {
+                            list += '<li class="list-group-item">' +
+                                        '<div>Full name: ' + client.full_name + '</div>' +
+                                        '<div>Available book(s): ' + client.available + '</div>' +
+
+                                '</li>';
                         });
+                        list += '</ol>';
+                        $('#client-container').append(list);
+
                     },
                     error: function (){
                         alert('An error occurred while processing the request.');
